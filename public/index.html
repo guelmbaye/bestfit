@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f3f0e8">
+<title>BESTFIT — Wear the outfit. Keep your best face.</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-shell">
+  <nav class="topbar">
+    <div class="brand-lockup logo-lockup" aria-label="BESTFIT">
+      <img src="/assets/bestfit-logo-ui.png" class="brand-logo" alt="BESTFIT">
+      <span class="brand-subline">YouCam-powered try-on</span>
+    </div>
+    <div class="topbar-right">
+      <span class="live-dot"><i></i> Judge-ready</span>
+      <button id="resetBtn" class="nav-reset">Reset</button>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">THE BETTER SHOPPING PHOTO</div>
+        <h1>Wear the outfit.<br><span>Keep your best face.</span></h1>
+        <p>Your best pose, the outfit you want, and the expression you actually like — combined into one cleaner virtual try-on.</p>
+        <div class="hero-actions">
+          <button id="judgeDemoBtn" class="primary hero-cta">
+            <span>Load Judge Demo</span>
+            <b>↗</b>
+          </button>
+          <div class="hero-note">3 inputs · 2 YouCam capabilities · 1 final image</div>
+        </div>
+      </div>
+
+      <aside class="hero-manifesto">
+        <div class="manifesto-kicker">THE IDEA</div>
+        <div class="manifesto-big">01 + 02 + 03</div>
+        <p><strong>Pose.</strong> Outfit. <em>Expression.</em></p>
+        <div class="manifesto-rule"></div>
+        <small>One shopping photo should not force you to choose between the parts you like.</small>
+      </aside>
+    </header>
+
+    <section class="story-rail" aria-label="How BESTFIT works">
+      <div><b>01</b><span>Keep the pose</span></div>
+      <div><b>02</b><span>Try the outfit</span></div>
+      <div><b>03</b><span>Restore the expression</span></div>
+      <div class="rail-final"><b>04</b><span>Get the BESTFIT</span></div>
+    </section>
+
+    <section class="workspace" id="builder">
+      <div class="workspace-head">
+        <div>
+          <div class="kicker">WINNING MOMENT</div>
+          <h2>Three inputs. One better try-on.</h2>
+          <p>Choose the useful part from each photo. BESTFIT does the orchestration.</p>
+        </div>
+        <div class="powered-pill">
+          <span class="spark">✦</span>
+          <span>Powered by YouCam Clothes + Retake</span>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step active" data-step="1"><b>1</b><span>Best pose</span></div>
+        <div class="step" data-step="2"><b>2</b><span>Garment</span></div>
+        <div class="step" data-step="3"><b>3</b><span>Best expression</span></div>
+        <div class="step" data-step="4"><b>4</b><span>BESTFIT</span></div>
+      </div>
+
+      <div class="upload-grid">
+        <label class="upload-card pose-card">
+          <span class="card-number">01</span>
+          <span class="label">BEST POSE</span>
+          <img id="sourcePreview" alt="Best pose preview">
+          <div class="placeholder">
+            <b>Keep this pose</b>
+            <span>Choose the body / framing you want to preserve.</span>
+          </div>
+          <input id="sourceInput" type="file" accept="image/jpeg,image/png">
+        </label>
+
+        <label class="upload-card garment-card">
+          <span class="card-number">02</span>
+          <span class="label">GARMENT</span>
+          <img id="garmentPreview" alt="Garment preview">
+          <div class="placeholder">
+            <b>Try this look</b>
+            <span>Choose the garment you want to visualize.</span>
+          </div>
+          <input id="garmentInput" type="file" accept="image/jpeg,image/png">
+        </label>
+
+        <label class="upload-card expression-card">
+          <span class="card-number">03</span>
+          <span class="label">BEST EXPRESSION</span>
+          <img id="selfiePreview" alt="Favorite expression preview">
+          <div class="placeholder">
+            <b>Keep this expression</b>
+            <span>Same person. The face you actually prefer.</span>
+          </div>
+          <input id="selfieInput" type="file" accept="image/jpeg,image/png">
+        </label>
+      </div>
+
+      <div class="action-bar">
+        <div class="select-wrap">
+          <span>Garment type</span>
+          <select id="category" aria-label="Garment category">
+            <option value="auto">Auto detect</option>
+            <option value="upper_body" selected>Upper body</option>
+            <option value="full_body">Full body</option>
+            <option value="lower_body">Lower body</option>
+            <option value="outer">Outerwear</option>
+            <option value="shoes">Shoes</option>
+          </select>
+        </div>
+
+        <div class="action-buttons">
+          <button id="clothesBtn" class="primary">
+            <span>Try the outfit</span>
+            <b>01</b>
+          </button>
+          <button id="retakeBtn" class="accent" disabled>
+            <span>Keep my best face</span>
+            <b>02</b>
+          </button>
+        </div>
+      </div>
+
+      <div id="status" class="status">
+        <i></i><span>Ready for your winning moment.</span>
+      </div>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="results-heading">
+        <div>
+          <div class="kicker">THE TRANSFORMATION</div>
+          <h2>Same pose. Same outfit. Better expression.</h2>
+        </div>
+        <div class="result-legend"><span></span> Real YouCam outputs</div>
+      </div>
+
+      <div class="result-flow">
+        <article class="result-card">
+          <div class="result-meta"><span>01</span><b>ORIGINAL</b></div>
+          <h3>Best pose</h3>
+          <div class="image-frame">
+            <img id="sourceResult" alt="Original pose">
+          </div>
+          <p>The pose and framing worth keeping.</p>
+        </article>
+
+        <div class="flow-arrow">→</div>
+
+        <article class="result-card">
+          <div class="result-meta"><span>02</span><b>YOUCAM CLOTHES</b></div>
+          <h3>Outfit try-on</h3>
+          <div class="image-frame">
+            <img id="clothesResult" alt="Clothes VTO result">
+          </div>
+          <p>The requested look, still using the original expression.</p>
+        </article>
+
+        <div class="flow-arrow">→</div>
+
+        <article class="result-card final">
+          <div class="final-ribbon">BESTFIT</div>
+          <div class="result-meta"><span>03</span><b>YOUCAM RETAKE</b></div>
+          <h3>Final shopping photo</h3>
+          <div class="image-frame final-frame" id="finalFrame">
+            <div id="finalPlaceholder" class="final-placeholder">
+              <span class="final-placeholder-index">03</span>
+              <b>Final not generated yet</b>
+              <small>Click “Keep my best face” to run YouCam Retake.</small>
+            </div>
+            <img id="finalResult" class="final-result-image hidden" alt="BESTFIT final result">
+          </div>
+          <p id="finalCaption"><strong>Waiting for preferred expression…</strong></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="editorial-grid">
+      <article class="editorial-card light">
+        <div class="editorial-index">01</div>
+        <div>
+          <div class="kicker">THE PROBLEM</div>
+          <h3>One photo has the pose.<br>Another has the face.</h3>
+          <p>Traditional virtual try-on starts from one photo. That forces shoppers to accept every part of that source image — even the expression they do not like.</p>
+        </div>
+      </article>
+
+      <article class="editorial-card dark">
+        <div class="editorial-index">02</div>
+        <div>
+          <div class="kicker">THE MAGIC</div>
+          <h3>Your best shopping photo can come from more than one photo.</h3>
+          <p>YouCam Clothes creates the look. YouCam Retake restores the expression. BESTFIT turns both into one commerce-ready result.</p>
+        </div>
+      </article>
+    </section>
+
+    <details id="proof" class="proof proof-pending">
+      <summary>
+        <span>
+          <b>Technical proof receipt</b>
+          <small>Real YouCam task IDs + SHA-256 input hashes</small>
+        </span>
+        <i>+</i>
+      </summary>
+      <div class="proof-body">
+        <div id="proofPending" class="proof-pending-message">
+          The proof receipt appears after the final BESTFIT image is generated.
+        </div>
+        <pre id="proofText" class="hidden"></pre>
+      </div>
+    </details>
+
+    <footer>
+      <div class="footer-brand">
+        <img src="/assets/bestfit-logo-ui.png" class="footer-logo" alt="BESTFIT">
+      </div>
+      <p>Wear the outfit. Keep your best face.</p>
+    </footer>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

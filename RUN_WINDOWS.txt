@@ -1,0 +1,8 @@
+BESTFIT GATE 1 — WINDOWS
+
+1. Copy-Item .env.example .env
+2. notepad .env
+3. Set YOUCAM_API_KEY
+4. npm run doctor
+5. npm start
+6. Open http://127.0.0.1:4173
